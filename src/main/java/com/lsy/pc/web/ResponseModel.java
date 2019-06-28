@@ -4,6 +4,7 @@
 package com.lsy.pc.web;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+
 import org.springframework.beans.factory.annotation.Autowire;
 import org.springframework.beans.factory.annotation.Configurable;
 
@@ -17,7 +18,9 @@ import java.time.LocalDateTime;
 @Configurable(autowire = Autowire.BY_TYPE, preConstruction = true)
 public class ResponseModel<T> implements Serializable {
 
-    /** */
+    /**
+     *
+     */
     private static final long serialVersionUID = 1L;
     private static final int STATUS_SUCCESS = 200;
     private static final int NOT_MODIFY = 304;

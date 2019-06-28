@@ -1,12 +1,21 @@
 package com.lsy.pc.utils;
 
-import java.io.*;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
 
+/**
+ * @author LSY
+ * @version 1.0
+ * @date 2019/6/28 14:21
+ */
 public class ImageUtils {
-
 
 
     public static void downImages(String filePath, String imgUrl) {

@@ -1,11 +1,6 @@
 package com.lsy.pc;
 
 
-import com.google.common.collect.Maps;
-import com.lsy.pc.model.Data;
-import com.lsy.pc.model.ZhihuModel;
-import com.lsy.pc.utils.JsonUtils;
-import net.minidev.json.JSONUtil;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -26,7 +21,6 @@ import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @RunWith(SpringRunner.class)

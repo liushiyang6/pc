@@ -59,7 +59,8 @@ public class ZhiHuService {
         }
         List<Data> data = responseEntity.getBody().getData();
         data.forEach(data1 -> {
-            System.out.println(HTMLUtils.delHTMLTag(data1.getContent()));
+            System.out.println("作者" + HTMLUtils.delHTMLTag(data1.getAuthor().getName()));
+            System.out.println("内容" + HTMLUtils.delHTMLTag(data1.getContent()));
             System.out.println();
         });
         System.out.println(responseEntity);

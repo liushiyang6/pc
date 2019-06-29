@@ -3,9 +3,13 @@ package com.lsy.pc;
 import com.google.gson.Gson;
 import com.google.gson.internal.LinkedTreeMap;
 
-import java.io.*;
-import java.net.*;
-import java.util.*;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.URL;
+import java.net.URLConnection;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -88,8 +92,8 @@ public class ZhiHu {
             //追加每一条回答,用于返回
             for (LinkedTreeMap<String, String> contentLink : dataList) {
                 String content = contentLink.get("content");
-                    stringBuffer.append(content).append("\r\n\r\n");
-                    num++;//本次查询到多少条回答
+                stringBuffer.append(content).append("\r\n\r\n");
+                num++;//本次查询到多少条回答
             }
             System.out.println("回答数  " + num);
         } catch (Exception e) {

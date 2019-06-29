@@ -3,22 +3,16 @@
  */
 package com.lsy.pc.model.json.zhihu;
 
-import java.util.List;
+import lombok.Data;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import java.util.List;
 
 /**
  * @author LSY
  * @version 1.0
  * @date 2019/6/28 14:47
  */
-
-
-@Getter
-@Setter
-@ToString
+@Data
 public class Author {
 
     private String id;
@@ -31,7 +25,7 @@ public class Author {
     private String url;
     private String user_type;
     private String headline;
-    private List<String> badge;
+    private List<Badge> badge;
     private int gender;
     private boolean is_advertiser;
     private boolean is_followed;

@@ -4,7 +4,6 @@ package com.lsy.pc.service;
 import com.lsy.pc.model.json.zhihu.Data;
 import com.lsy.pc.model.json.zhihu.ZhihuModel;
 import com.lsy.pc.utils.HTMLUtils;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,11 +15,12 @@ import org.springframework.web.client.RestTemplate;
 
 import java.text.MessageFormat;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * @author LSY
  * @version 1.0
- * @date 2019/6/28 14:21
+ * @date 2019/6/29 14:21
  */
 @Service
 public class ZhiHuService {
@@ -39,16 +39,22 @@ public class ZhiHuService {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
+    private static int count = 0;
+
     /**
-     * 传入问题id 返回所有答案对应数据
+     * 传入问题id 输出所有答案对应数据
      */
-    public void getAnswers(String questionId) {
+    public void getAnswers(String questionId, int offset) {
         logger.info("开始爬取知乎questionId:{}对应数据===>", questionId);
+        getAn(questionId, offset);
+        logger.info("共计：{}回答数", count);
+    }
+
+    private void getAn(String questionId, int offset) {
         String url = "https://www.zhihu.com/api/v4/questions/{0}/answers?include={1}&sort_by={2}&limit={3}";
         url = MessageFormat.format(url, questionId, include, sortBy, limit);
-        url += getOffset(url, 0);
-        logger.info("url:{}", url);
-        ResponseEntity<ZhihuModel> responseEntity = null;
+        url += getOffset( offset);
+        ResponseEntity<ZhihuModel> responseEntity;
         try {
             responseEntity = restTemplate.getForEntity(url, ZhihuModel.class);
         } catch (HttpClientErrorException.NotFound e) {
@@ -57,16 +63,21 @@ public class ZhiHuService {
         } catch (Exception e) {
             throw new RuntimeException("爬取异常", e);
         }
-        List<Data> data = responseEntity.getBody().getData();
-        data.forEach(data1 -> {
-            System.out.println("作者" + HTMLUtils.delHTMLTag(data1.getAuthor().getName()));
-            System.out.println("内容" + HTMLUtils.delHTMLTag(data1.getContent()));
-            System.out.println();
+        ZhihuModel body = responseEntity.getBody();
+        List<Data> dataList = Objects.requireNonNull(body).getData();
+        dataList.forEach(data -> {
+            if (data.getContent().contains("九江")) {
+                count++;
+                logger.info("作者:{}", HTMLUtils.delHTMLTag(data.getAuthor().getName()));
+                logger.info("内容:{}", HTMLUtils.delHTMLTag(data.getContent()));
+            }
         });
-        System.out.println(responseEntity);
+        if (!body.getPaging().is_end()) {
+            getAn(questionId, offset + Integer.valueOf(limit));
+        }
     }
 
-    private static String getOffset(String url, int i) {
+    private static String getOffset(int i) {
         return "&offset=" + i;
     }
 

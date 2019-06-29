@@ -3,19 +3,14 @@
  */
 package com.lsy.pc.model.json.zhihu;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.Data;
 
 /**
  * @author LSY
  * @version 1.0
  * @date 2019/6/28 14:47
  */
-
-@Getter
-@Setter
-@ToString
+@Data
 public class Reward_info {
 
     private boolean can_open_reward;

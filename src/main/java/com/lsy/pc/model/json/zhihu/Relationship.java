@@ -3,21 +3,16 @@
  */
 package com.lsy.pc.model.json.zhihu;
 
-import java.util.List;
+import lombok.Data;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import java.util.List;
 
 /**
  * @author LSY
  * @version 1.0
  * @date 2019/6/28 14:47
  */
-
-@Getter
-@Setter
-@ToString
+@Data
 public class Relationship {
 
     private boolean is_author;

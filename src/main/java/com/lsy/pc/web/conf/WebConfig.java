@@ -1,7 +1,6 @@
 package com.lsy.pc.web.conf;
 
 import com.lsy.pc.web.interceptors.HttpInterceptor;
-
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.boot.web.servlet.MultipartConfigFactory;
 import org.springframework.context.annotation.Bean;
@@ -19,11 +18,10 @@ import org.springframework.web.filter.CorsFilter;
 import org.springframework.web.servlet.config.annotation.ContentNegotiationConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 
+import javax.servlet.MultipartConfigElement;
 import java.io.File;
 import java.nio.charset.Charset;
 import java.util.List;
-
-import javax.servlet.MultipartConfigElement;
 
 @Configuration
 public class WebConfig extends WebMvcConfigurationSupport {

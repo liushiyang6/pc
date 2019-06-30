@@ -2,6 +2,7 @@ package com.lsy.pc;
 
 import com.google.gson.Gson;
 import com.lsy.pc.model.json.zhihu.ZhihuModel;
+import com.lsy.pc.service.OPPOService;
 import com.lsy.pc.service.ZhiHuService;
 import com.lsy.pc.utils.JsonUtils;
 import com.lsy.pc.utils.ReadUtils;
@@ -25,10 +26,13 @@ public class MTest {
     @Autowired
     private ZhiHuService zhiHuService;
 
+    @Autowired
+    private OPPOService oppoService;
+
 
     @Test
     public void test01() {
-        zhiHuService.getAnswers("310213933",0);
+        zhiHuService.getAnswers("310213933", 0);
 
     }
 
@@ -39,4 +43,18 @@ public class MTest {
         ZhihuModel zhihuModel = JsonUtils.readValue(s, ZhihuModel.class);
         System.out.println(zhihuModel.getPaging().is_start());
     }
+
+
+    @Test
+    public void test03() {
+        c(3600L);
+    }
+
+    private void c(Long l) {
+        while (l.toString().length() < 11) {
+            oppoService.checkPwd("宋玲玲", l, 11);
+            l++;
+        }
+    }
 }
+

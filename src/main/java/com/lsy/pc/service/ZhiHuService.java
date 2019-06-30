@@ -66,7 +66,7 @@ public class ZhiHuService {
         ZhihuModel body = responseEntity.getBody();
         List<Data> dataList = Objects.requireNonNull(body).getData();
         dataList.forEach(data -> {
-            if (data.getContent().contains("九江")) {
+            if (data.getContent().contains("上饶") && data.getContent().contains("女")) {
                 count++;
                 logger.info("作者:{}", HTMLUtils.delHTMLTag(data.getAuthor().getName()));
                 logger.info("内容:{}", HTMLUtils.delHTMLTag(data.getContent()));

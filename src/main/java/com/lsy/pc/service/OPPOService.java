@@ -9,6 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
@@ -52,6 +55,12 @@ public class OPPOService {
                 if (b) {
                     System.out.println("[" + name + "]尝试密码:[" + p + "]错误");
                 } else {
+                    File file = new File("C:\\code\\pc\\src\\main\\resources\\txt\\mima");
+                    file.exists();
+                    BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file));
+                    bufferedWriter.write(name);
+                    bufferedWriter.flush();
+                    bufferedWriter.close();
                     throw new RuntimeException("密码为:" + p);
                 }
             } catch (IOException e) {

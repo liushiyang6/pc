@@ -55,10 +55,11 @@ public class OPPOService {
                 if (b) {
                     System.out.println("[" + name + "]尝试密码:[" + p + "]错误");
                 } else {
-                    File file = new File("C:\\code\\pc\\src\\main\\resources\\txt\\mima");
+                    System.out.println("!!!!!!!!!!!!!!!!!!" + p);
+                    File file = new File("C:\\Users\\lsy\\IdeaProjects\\pc\\src\\main\\resources\\txt\\aa");
                     file.exists();
                     BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file));
-                    bufferedWriter.write(name);
+                    bufferedWriter.write(p);
                     bufferedWriter.flush();
                     bufferedWriter.close();
                     throw new RuntimeException("密码为:" + p);

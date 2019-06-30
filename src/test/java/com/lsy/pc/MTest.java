@@ -48,38 +48,8 @@ public class MTest {
     @Test
     public void test03() throws InterruptedException {
         dT t1 = new dT();
-        t1.setI(10000L);
-        dT t2 = new dT();
-        t2.setI(20000L);
-        dT t3 = new dT();
-        t3.setI(30000L);
-
-        dT t4 = new dT();
-        t4.setI(40000L);
-        dT t5 = new dT();
-        t5.setI(50000L);
-        dT t6 = new dT();
-        t6.setI(60000L);
-
-        dT t7 = new dT();
-        t7.setI(70000L);
-        dT t8 = new dT();
-        t8.setI(80000L);
-        dT t9 = new dT();
-        t9.setI(90000L);
-        dT t0 = new dT();
-        t0.setI(0L);
 
         t1.start();
-        t2.start();
-        t3.start();
-        t4.start();
-        t5.start();
-        t6.start();
-        t7.start();
-        t8.start();
-        t9.start();
-        t0.start();
 
 
         Thread.sleep(Long.MAX_VALUE);
@@ -114,11 +84,8 @@ public class MTest {
 
         @Override
         public void run() {
-
-            while (l.toString().length() <= 5) {
-                oppoService.checkPwd("宋玲玲", l, 5);
-                l++;
-            }
+            oppoService.checkPwd("宋玲玲", "");
+            l++;
         }
     }
 }

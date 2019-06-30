@@ -1,13 +1,13 @@
 package com.lsy.pc;
 
 public class PojiePassword {
-    static String real = "ZY999";//真实密码
+    static String real = "ZY9199";//真实密码
     static String pass = "";//执行循环操作找出来的与真实密码相等的字符串
     static String prod = "";//中间产生的字符串
     static String[] s = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"};
-//定义一个有62个字符串的字符串数组
-//生成一个指定位数的密码，每一位有以上62种可能,n=6时，第一个为000000，最后一个为ZZZZZZ,共//62^6种可能。n=7时，第一个为0000000，最后一个为ZZZZZZZ，共62^7种可 能。n=8时，第一个为//00000000，最后一个为ZZZZZZZZ，共62^8种可能
-//62^6种情况，累死也列不出来，，，
+    //定义一个有62个字符串的字符串数组
+    //生成一个指定位数的密码，每一位有以上62种可能,n=6时，第一个为000000，最后一个为ZZZZZZ,共//62^6种可能。n=7时，第一个为0000000，最后一个为ZZZZZZZ，共62^7种可 能。n=8时，第一个为//00000000，最后一个为ZZZZZZZZ，共62^8种可能
+    //62^6种情况，累死也列不出来，，，
 
 
     public static void main(String[] args) throws InterruptedException {

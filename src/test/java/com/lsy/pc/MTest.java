@@ -59,7 +59,7 @@ public class MTest {
     @Test
     public void test03() throws InterruptedException, IOException {
 
-        oppoService.checkPwd("贾寅", 10, 0L);
+        oppoService.checkPwd("邢小海", 3, 565555L);
         Thread.sleep(Long.MAX_VALUE);
     }
 

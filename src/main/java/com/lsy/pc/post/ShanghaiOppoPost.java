@@ -52,7 +52,7 @@ public class ShanghaiOppoPost {
         datas.put("TbUser", name);
         String pwd;
         while (true) {
-            pwd = PwdUtils.getNumPwd(count);
+            pwd = String.valueOf(count);
             datas.put("TbPass", pwd);
             Connection connection = connect.headers(headers).data(datas);
             Document post = null;

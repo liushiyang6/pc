@@ -1,17 +1,23 @@
 package com.lsy.pc;
 
 import com.google.gson.Gson;
+
 import com.lsy.pc.model.json.zhihu.ZhihuModel;
+import com.lsy.pc.post.ShanghaiOppoPost;
 import com.lsy.pc.service.OPPOService;
 import com.lsy.pc.service.ZhiHuService;
 import com.lsy.pc.utils.JsonUtils;
 import com.lsy.pc.utils.ReadUtils;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 
 /**
@@ -32,8 +38,13 @@ public class MTest {
 
     @Test
     public void test01() {
-        zhiHuService.getAnswers("310213933", 0);
-
+        ShanghaiOppoPost shanghaiOppoPost = new ShanghaiOppoPost();
+        shanghaiOppoPost.checkPwd("贾寅", 2, 0L);
+        try {
+            Thread.sleep(Long.MAX_VALUE);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     @Test
@@ -46,47 +57,12 @@ public class MTest {
 
 
     @Test
-    public void test03() throws InterruptedException {
-        dT t1 = new dT();
+    public void test03() throws InterruptedException, IOException {
 
-        t1.start();
-
-
+        oppoService.checkPwd("贾寅", 10, 0L);
         Thread.sleep(Long.MAX_VALUE);
     }
 
 
-//    class tt implements Runnable {
-//
-//        @Override
-//        public void run() {
-//            System.out.println("ewewq");
-//            Long l = 1000L;
-//            while (l.toString().length() < 11) {
-//                oppoService.checkPwd("宋玲玲", l, 11);
-//                l++;
-//            }
-//            System.out.println("ewewq");
-//        }
-//    }
-
-    public class dT extends Thread {
-
-        private Long l;
-
-        public Long getI() {
-            return l;
-        }
-
-        public void setI(Long l) {
-            this.l = l;
-        }
-
-        @Override
-        public void run() {
-            oppoService.checkPwd("宋玲玲", "");
-            l++;
-        }
-    }
 }
 

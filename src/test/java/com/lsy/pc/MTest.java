@@ -39,7 +39,7 @@ public class MTest {
     @Test
     public void test01() {
         ShanghaiOppoPost shanghaiOppoPost = new ShanghaiOppoPost();
-        shanghaiOppoPost.checkPwd("贾寅", 2, 0L);
+        shanghaiOppoPost.checkPwd("邢小海", 10, 556000L);
         try {
             Thread.sleep(Long.MAX_VALUE);
         } catch (InterruptedException e) {

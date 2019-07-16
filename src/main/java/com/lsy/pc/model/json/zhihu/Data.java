@@ -3,12 +3,16 @@
  */
 package com.lsy.pc.model.json.zhihu;
 
+import lombok.Getter;
+import lombok.Setter;
+
 /**
  * @author LSY
  * @version 1.0
  * @date 2019/6/28 14:47
  */
-@lombok.Data
+@Getter
+@Setter
 public class Data {
 
     private long id;

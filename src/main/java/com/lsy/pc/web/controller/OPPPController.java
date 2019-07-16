@@ -22,14 +22,11 @@ public class OPPPController {
     @Autowired
     private OPPOService oppoService;
 
-    @Value("${}")
+    @Value("${oppo.threadNum}")
     private int threadNum;
 
-    @PostMapping("/break/code")
-    public void breakCode(@RequestBody OPPOBreakCodeRequest oppoBreakCodeRequest) {
+    @PostMapping("/break/pwd")
+    public void breakPwd(@RequestBody OPPOBreakCodeRequest oppoBreakCodeRequest) {
         oppoService.checkPwd(oppoBreakCodeRequest.getName(), threadNum, 0L);
     }
-
-
-
 }

@@ -36,20 +36,13 @@ public class PwdUtils {
     }
 
 
-
     /**
-     * 纯数字型密码
-     * 11进制的a替换0 兼容密码第一位可为0(会多很多次的请求)
+     * 获取密码
      *
      * @param count 次数
      * @return 尝试的密码
      */
     public static String getNumPwd(Long count) {
-//        String unsignedString = Integer.toUnsignedString(Math.toIntExact(count), 11);
-//        return unsignedString.replaceAll("a", "0");
-
-        return count.toString();
+        return DigitalFor62._10_to_62(count, 0);
     }
-
-
 }

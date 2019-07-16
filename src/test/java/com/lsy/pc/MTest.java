@@ -15,9 +15,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 
 /**
@@ -34,7 +31,6 @@ public class MTest {
 
     @Autowired
     private OPPOService oppoService;
-
 
     @Test
     public void test01() {
@@ -55,14 +51,10 @@ public class MTest {
         System.out.println(zhihuModel.getPaging().is_start());
     }
 
-
     @Test
     public void test03() throws InterruptedException, IOException {
-
-        oppoService.checkPwd("邢小海", 15, 0L);
+        oppoService.checkPwd("邢小海", 10, 0L);
         Thread.sleep(Long.MAX_VALUE);
     }
-
-
 }
 

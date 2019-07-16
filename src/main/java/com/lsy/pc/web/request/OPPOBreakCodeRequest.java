@@ -13,6 +13,4 @@ import lombok.Setter;
 @Setter
 public class OPPOBreakCodeRequest {
     String name;
-
-
 }

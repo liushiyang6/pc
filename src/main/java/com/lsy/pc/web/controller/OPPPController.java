@@ -19,11 +19,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/pc/oppo")
 public class OPPPController {
 
-    @Autowired
-    private OPPOService oppoService;
+    private final OPPOService oppoService;
 
     @Value("${oppo.threadNum}")
     private int threadNum;
+
+    public OPPPController(OPPOService oppoService) {
+        this.oppoService = oppoService;
+    }
 
     @PostMapping("/break/pwd")
     public void breakPwd(@RequestBody OPPOBreakCodeRequest oppoBreakCodeRequest) {

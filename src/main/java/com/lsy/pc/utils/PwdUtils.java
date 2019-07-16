@@ -45,4 +45,13 @@ public class PwdUtils {
     public static String getNumPwd(Long count) {
         return DigitalFor62._10_to_62(count, 0);
     }
+
+    public static void main(String[] args) {
+        long i = 0;
+        while (true) {
+            System.out.println(getNumPwd(i));
+            i++;
+        }
+    }
+
 }

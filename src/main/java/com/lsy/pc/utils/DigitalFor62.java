@@ -3,7 +3,7 @@ package com.lsy.pc.utils;
 import java.util.Stack;
 
 /**
- * 62进制转换
+ * 62进制转换(大小写数字)
  */
 public class DigitalFor62 {
     private static char[] charSet = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz".toCharArray();
@@ -75,17 +75,6 @@ public class DigitalFor62 {
             cnt++;
         }
         return String.format("%08d", decimal);
-    }
-
-    /**
-     *
-     */
-    public static void main(String[] args) {
-        // TODO Auto-generated method stub  
-        System.out.println("62System=" + _10_to_62(Integer.parseInt("35174605"), 0));
-        System.out.println("10System=" + convertBase62ToDecimal("2NaWL"));
-
-        System.out.println("10System=" + convertBase62ToDecimal_v2("00008sKrPTsBmv"));   //120160524121052485
     }
 
 }

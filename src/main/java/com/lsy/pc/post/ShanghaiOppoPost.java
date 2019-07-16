@@ -55,11 +55,15 @@ public class ShanghaiOppoPost {
         String pwd;
         while (true) {
             Connection connect = Jsoup.connect(url);
+            System.out.println("=====count:"+count);
+            System.out.println("=====start:"+start);
+            System.out.println("=====num:"+num);
+            System.out.println("=====name:"+name);
             pwd = PwdUtils.getNumPwd(count);
-            System.out.println(pwd);
+            System.out.println(pwd+"--");
             datas.put("TbPass", pwd);
             Connection connection = connect.headers(headers).data(datas);
-            Document post = null;
+            Document post;
             try {
                 post = connection.post();
                 assert post != null;
@@ -102,7 +106,7 @@ public class ShanghaiOppoPost {
     }
 
     public void checkPwd(String name, int threadNum, Long start) {
-        for (int i = 0; i < threadNum; i++) {
+        for (int i = 1; i <= threadNum; i++) {
             new Thread(new OppoThread(name, threadNum, i, start)).start();
         }
     }

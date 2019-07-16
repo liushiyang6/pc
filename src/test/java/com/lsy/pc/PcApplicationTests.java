@@ -42,8 +42,6 @@ public class PcApplicationTests {
                 ImageUtils.downImages(imagePath, imgSrc);
             }
             System.out.println("下载完成");
-
-            System.out.println("");
         } catch (IOException e) {
             e.printStackTrace();
         }
